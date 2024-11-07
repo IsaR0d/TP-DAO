@@ -1,0 +1,15 @@
+<RCC>
+  <qresource prefix="icons">
+    <file>./icons/usuario.png</file>
+    <file>./icons/consultar.png</file>
+    <file>./icons/crearUsuario.png</file>
+    <file>./icons/devolver.png</file>
+    <file>./icons/escritor.png</file>
+    <file>./icons/hambMenu.png</file>
+    <file>./icons/loan.png</file>
+    <file>./icons/regLibro.png</file>
+    <file>./icons/reporte.png</file>
+    <file>./icons/usuarios.png</file>
+    <file>./icons/vacio.png</file>
+  </qresource>
+</RCC>
