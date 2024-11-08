@@ -1,8 +1,8 @@
 import sys
 from PyQt6.QtWidgets import QMainWindow, QApplication, QTableWidgetItem
 
-from PyQt6.QtWidgets import QLineEdit, QTextEdit
-
+from PyQt6.QtCore import QDate
+from PyQt6.QtWidgets import QLineEdit, QTextEdit, QTableWidget
 from ui import Ui_MainWindow
 
 from controler import buscar_prestamos_vencidos
@@ -21,8 +21,8 @@ class MainWindow(QMainWindow):
         self.ui.libros_tabla.setColumnWidth(3, 150)
         self.ui.libros_tabla.setColumnWidth(4, 150)
         self.ui.libros_tabla.setColumnWidth(5, 150)
-    
-
+        self.ui.libros_tabla.setSelectionBehavior(QTableWidget.SelectionBehavior.SelectRows)
+        self.ui.stackedWidget_3.setCurrentIndex(0)
 
     def on_libros_btn_clicked(self):
         self.ui.stackedWidget.setCurrentIndex(0)
@@ -45,11 +45,16 @@ class MainWindow(QMainWindow):
         for widget in self.ui.stackedWidget_2.widget(0).findChildren((QLineEdit, QTextEdit)):
             widget.clear()
 
+    def on_prestar_libro_clicked(self):
+        selected = self.ui.libros_tabla.selectedItems()
+        if selected:
+            row = selected[0].row()
+            data = [self.ui.libros_tabla.item(row, col).text() for col in range(self.ui.libros_tabla.columnCount())]
+            self.ui.stackedWidget_3.setCurrentIndex(1)
+            self.ui.libro_prestamo.setText(data[1])
+            self.ui.dateEdit.setDate(QDate.currentDate())
+            self.ui.dateEdit_2.setDate(QDate.currentDate().addMonths(1))
 
-
-
-
-    
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
